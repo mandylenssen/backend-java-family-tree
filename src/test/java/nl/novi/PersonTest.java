@@ -19,6 +19,7 @@ class PersonTest {
     List<Person> children = new ArrayList<>();
     List<Person> siblings = new ArrayList<>();
     List<Pet> pets = new ArrayList<>();
+    List<Person> grandChildren = new ArrayList<>();
 
 
     @BeforeEach // hier maken we een persoon aan
@@ -204,5 +205,14 @@ class PersonTest {
         assertEquals("Jordy", me.getSiblings().get(0).getName());
         assertEquals(1, me.getSiblings().size());
 
+    }
+
+    @Test
+    void getGrandChildren() {
+    grandChildren.add(colt);
+    me.addChild(colt);
+    mother.addChild(me);
+    List<Person> list = mother.getGrandChildren();
+    assertEquals(grandChildren, list);
     }
 }
