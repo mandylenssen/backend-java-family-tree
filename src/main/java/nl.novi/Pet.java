@@ -5,7 +5,7 @@ public class Pet {
     private String name;
     private int age;
     private String species;
-    private nl.novi.Person owner;
+    private Person owner;
 
     public Pet(String name, int age, String species) {
         this.name = name;
@@ -37,11 +37,11 @@ public class Pet {
         this.species = species;
     }
 
-    public nl.novi.Person getOwner() {
+    public Person getOwner() {
         return owner;
     }
 
-    public void setOwner(nl.novi.Person owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
     }
 }

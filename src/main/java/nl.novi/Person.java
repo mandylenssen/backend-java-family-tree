@@ -37,58 +37,49 @@ public class Person {
     public void addParents(Person father, Person mother, Person child) {
         child.setFather(father);
         child.setMother(mother);
-        father.addChild(father, child);
-        mother.addChild(mother, child);
+        father.addChild(child);
+        mother.addChild(child);
     }
 
-    public void addChild(Person parent, Person child){
+    public void addChild(Person child){
         List<Person> children = new ArrayList<>();
-        if(parent.getChildren() != null) {
-            for (Person person : parent.getChildren() ) {
-                children.add(person);
-            }
+        if(this.getChildren() != null) {
+            children.addAll(this.getChildren());
         }
         children.add(child);
-        parent.setChildren(children);
+        this.setChildren(children);
     }
 
-    public void addPet(Person person, Pet pet) {
+    public void addPet(Pet pet) {
         List<Pet> pets = new ArrayList<>();
-        if (person.getPets() != null) {
-            pets.addAll(person.getPets());
+        if (this.getPets() != null) {
+            pets.addAll(this.getPets());
         }
         pets.add(pet);
-        person.setPets(pets);
+        this.setPets(pets);
     }
 
 
-
-    public void addSibling(Person person, Person sibling){
-        List<Person> family = new ArrayList<>();
-        if(person.getSiblings() != null){
-            for (Person people : person.getSiblings()) {
-                family.add(people);
-            }
+    public void addSibling(Person sibling){
+        List<Person> siblings = new ArrayList<>();
+        if (this.getSiblings() != null) {
+            siblings.addAll(this.getSiblings());
         }
-        family.add(sibling);
-        person.setSiblings(family);
+        siblings.add(sibling);
+        this.setSiblings(siblings);
     }
 
-
-    public List<Person> getGrandChildren(Person person){
+    public List<Person> getGrandChildren(){
         List<Person> grandChildren = new ArrayList<>();
-        if(person.getChildren() != null){
-            for (Person children : person.getChildren()) {
-                if(children.getChildren() != null){
-                    for (Person grandKid : children.getChildren()) {
-                        grandChildren.add(grandKid);
-                    }
+        if (this.getChildren() != null) {
+            for (Person child : this.getChildren()) {
+                if (child.getChildren() != null) {
+                    grandChildren.addAll(child.getChildren());
                 }
             }
         }
-        return grandChildren;
+            return grandChildren;
     }
-
 
     // getters & setters
     public String getName() {
@@ -143,8 +134,8 @@ public class Person {
         return father;
     }
 
-    public void setFather(Person fater) {
-        this.father = fater;
+    public void setFather(Person father) {
+        this.father = father;
     }
 
     public List<Person> getSiblings() {
@@ -170,4 +161,6 @@ public class Person {
     public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
+
+
 }
